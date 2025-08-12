@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/fontawesome.min.css">
+    <title>Deployment</title>
+    <style>
+        body {
+            background-image: url('https://www.westtexasperio.com/wp-content/uploads/oral-cancer-screening201610a.jpg'); /* Replace 'path/to/your/image.jpg' with the actual path to your image */
+            background-size: cover; /* Ensure the image covers the entire background */
+            background-position: center; /* Center the image */
+            font-family: 'Poppins', sans-serif; /* Use the 'Poppins' font family */
+            color: #000; /* Set text color to black */
+        }
+
+        /* Rest of your CSS styles */
+        .title {
+            text-align: center;
+            margin: 0 auto 80px;
+            position: relative;
+            line-height: 60px;
+            color: rgb(0, 0, 0);
+        }
+
+        .title::after {
+            content: '';
+            background-color: rgb(255, 89, 0);
+            width: 80px;
+            height: 5px;
+            border-radius: 5px;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .button {
+            display: inline-block;
+            border-radius: 70px;
+            background-color: grey;
+            border: none;
+            color: #FFFFFF;
+            text-align: center;
+            font-size: 14px;
+            padding: 20px;
+            width: 200px;
+            transition: all 0.5s;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        .button span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+
+        .button span:after {
+            content: '\00bb';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.5s;
+        }
+
+        .button:hover span {
+            padding-right: 25px;
+        }
+
+        .button:hover span:after {
+            opacity: 1;
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <h1 class="title">Oral Cancer Detection</h1>
+
+        <form action="/predict" method="POST" enctype="multipart/form-data">
+            <label for="img"><h2>Select image</h2></label>
+            <input class="button" type="file" id="img" name="file">
+            <br><br><br>
+            <input class="button" type="submit" value="Upload"/>
+        </form>
+
+        {% if result != None %}
+        <h2>{{ result }}</h2>
+        {% endif %}
+    </center>
+</body>
+</html>
